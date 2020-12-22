@@ -1,0 +1,9 @@
+.Tasweek__footer__container{
+    background-color: #203040;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 2rem;
+}
