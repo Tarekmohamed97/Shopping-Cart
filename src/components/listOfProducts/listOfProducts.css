@@ -1,0 +1,13 @@
+.productsList__Container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mainContent__container{
+    flex: 3 60rem;
+    display: flex;
+}
+
+.sideBarContent__container{
+    flex: 1 20rem;
+}
