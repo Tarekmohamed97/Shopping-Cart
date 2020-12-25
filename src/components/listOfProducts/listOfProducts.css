@@ -6,6 +6,7 @@
 .mainContent__container{
     flex: 3 60rem;
     display: flex;
+    flex-direction: column;
 }
 
 .sideBarContent__container{
