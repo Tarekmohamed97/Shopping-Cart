@@ -1,0 +1,33 @@
+.filterBar__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    margin: .5rem;
+    border-bottom: .1rem solid rgb(151, 149, 149);
+}
+
+.filterBar__container > div { 
+    flex: 1;
+    font-weight: bold;
+}
+
+
+.filterSort__section > select{
+    border: 1px solid rgb(151, 149, 149);
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(218, 216, 216);
+}
+
+
+
+
+.filterSizes__Section > select{
+    border: 1px solid rgb(151, 149, 149);
+    padding: 3px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(218, 216, 216);
+}
