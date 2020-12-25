@@ -23,19 +23,29 @@
 
 .productPrice__section{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
     font-size: 110%;
 }
 
+.priceNumber__box{
+    background-color: #2a6592;
+    color: white;
+    font-weight: bold;
+    padding: .4rem 1rem;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 16px;
+}
+
 .addToCart__button{
-    width: 100%;
+    width: 70%;
     border: none;
     padding: .5rem;
-    background-color: rgb(227, 241, 19);
-    color: rgb(0, 0, 0);
+    background-color: rgb(252, 227, 7);
+    color: rgb(15, 53, 104);
     font-weight: bold;
     font-size: 110%;
     border-radius: 5px;
@@ -46,4 +56,9 @@
     cursor: pointer;
     background-color: rgb(243, 253, 99);
     transition: .5s ease-in-out;
+}
+
+.shoppingIcon{
+    width: 30px;
+    color: rgb(15, 53, 104);
 }

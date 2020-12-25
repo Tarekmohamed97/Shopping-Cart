@@ -1,5 +1,6 @@
 import React from 'react';
-import "./products.css"
+import "./products.css";
+import formatCurrency from '../../../utilities'
 
 const Products = ({products}) => {
 
@@ -14,8 +15,11 @@ const Products = ({products}) => {
                                     <p>{product.title}</p>
                                 </a>
                                 <div className = "productPrice__section">
-                                    <div>product price : {product.price}</div>
-                                    <button className = "addToCart__button">Add To Cart</button>
+                                    <div className = "priceNumber__box">{formatCurrency(product.price)}</div>
+                                    <button className = "addToCart__button">
+                                        <i className ="fas fa-shopping-cart shoppingIcon"></i>
+                                        Add To Cart
+                                    </button>
                                 </div>
                         </div>
                     ))
