@@ -2,7 +2,7 @@ import React from 'react';
 import "./products.css";
 import formatCurrency from '../../../utilities'
 
-const Products = ({products}) => {
+const Products = ({products, handleAddToCart}) => {
 
 
     return (
@@ -16,7 +16,10 @@ const Products = ({products}) => {
                                 </a>
                                 <div className = "productPrice__section">
                                     <div className = "priceNumber__box">{formatCurrency(product.price)}</div>
-                                    <button className = "addToCart__button">
+                                    <button 
+                                        className = "addToCart__button"
+                                        onClick = {() => handleAddToCart(product)}
+                                    >
                                         <i className ="fas fa-shopping-cart shoppingIcon"></i>
                                         Add To Cart
                                     </button>
