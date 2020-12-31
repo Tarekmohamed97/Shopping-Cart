@@ -3,13 +3,16 @@ import data from "../../data.json";
 import "./listOfProducts.css"
 import Products from './products';
 import ProductsFilter from '../filterBar/index'
+import ReservedProducts from '../reservedProducts';
 
 function ListOfProducts() {
 
     const [state, setState] = useState({
         products: data.products,
         size: "",
-        sort: ""
+        sort: "",
+        reservedItems: [],
+        totalCost: 0
     })
 
     const filterByPrice = (event) => {
@@ -41,6 +44,49 @@ function ListOfProducts() {
         }
     }
 
+    const handleAddToCart = (product) => {
+        let alreadyInCart = false;
+        const reservedItemsCopy = state.reservedItems.slice();
+        let newTotalCost = state.totalCost;
+        reservedItemsCopy.forEach((item) => {
+            if(item._id === product._id){
+                item.count++;
+                alreadyInCart = true
+                newTotalCost = newTotalCost + product.price
+            }
+        });
+        if(!alreadyInCart){
+            reservedItemsCopy.push({...product, count : 1});
+            newTotalCost = newTotalCost + product.price
+        }
+        setState({...state,
+            reservedItems: reservedItemsCopy,
+            totalCost: newTotalCost
+        })
+    }
+
+    const handleRemoveFromCart = (product) => {
+        const cartItems = state.reservedItems.slice();
+        let newTotalCost = state.totalCost;
+        newTotalCost = newTotalCost - product.price;
+        if(product.count === 1){
+            setState({...state,
+            reservedItems: cartItems.filter(item => item._id !== product._id),
+            totalCost: newTotalCost
+            })
+        } else {
+            cartItems.forEach((item) => {
+                if(item._id === product._id){
+                    item.count--;
+                }
+            });
+            setState({...state,
+                reservedItems: cartItems,
+                totalCost: newTotalCost
+            })
+        }
+    }
+
     return (
         <div className = "productsList__Container">
             <div className = "mainContent__container">
@@ -51,10 +97,10 @@ function ListOfProducts() {
                     filterBySize = {filterBySize}
                     filterByPrice = {filterByPrice} 
                 />
-                <Products products = {state.products} />
+                <Products handleAddToCart = {handleAddToCart}  products = {state.products} />
             </div>
             <div className = "sideBarContent__container">
-                carts
+                <ReservedProducts totalCost = {state.totalCost} handleRemoveFromCart = {handleRemoveFromCart} cartItems = {state.reservedItems} />
             </div>
         </div>
     )
