@@ -50,3 +50,29 @@
     background-color: rgb(41, 94, 148);
     transition: .5s ease-in-out;
 }
+
+.costProceed__Section{
+    display: flex;
+    margin: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 120%;
+    color: rgb(15, 53, 104);
+}
+
+.ProceedButton__Section{
+    border: none;
+    padding: .5rem 2rem;
+    font-weight: bold;
+    font-size: 90%;
+    background-color: rgb(252, 227, 7);
+    color: rgb(15, 53, 104);
+    border-radius: 5px;
+}
+
+.ProceedButton__Section:hover{
+    cursor: pointer;
+    background-color: rgb(239, 250, 82);
+    transition: .5s ease-in-out;
+}

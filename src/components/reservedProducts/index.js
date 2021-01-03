@@ -30,10 +30,10 @@ const ReservedProducts = ({cartItems, handleRemoveFromCart, totalCost}) => {
                 }
                 {
                     cartItems.length !== 0 && (
-                        <div>
+                        <div className = "costProceed__Section">
                             <div>Total Cost: {formatCurrency(totalCost)}</div>
                             <div>
-                                <button>Proceed</button>
+                                <button className = "ProceedButton__Section" >Proceed</button>
                             </div>
                         </div>
                     )
