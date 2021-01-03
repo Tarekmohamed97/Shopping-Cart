@@ -11,8 +11,8 @@ function ListOfProducts() {
         products: data.products,
         size: "",
         sort: "",
-        reservedItems: [],
-        totalCost: 0
+        reservedItems: JSON.parse(localStorage.getItem("cartItems"))? JSON.parse(localStorage.getItem("cartItems")) : [],
+        totalCost: JSON.parse(localStorage.getItem("totalCost"))
     })
 
     const filterByPrice = (event) => {
@@ -63,6 +63,8 @@ function ListOfProducts() {
             reservedItems: reservedItemsCopy,
             totalCost: newTotalCost
         })
+        localStorage.setItem("cartItems", JSON.stringify(reservedItemsCopy));
+        localStorage.setItem("totalCost", JSON.stringify(newTotalCost));
     }
 
     const handleRemoveFromCart = (product) => {
@@ -74,6 +76,8 @@ function ListOfProducts() {
             reservedItems: cartItems.filter(item => item._id !== product._id),
             totalCost: newTotalCost
             })
+            localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(item => item._id !== product._id)))
+            localStorage.setItem("totalCost", JSON.stringify(newTotalCost));
         } else {
             cartItems.forEach((item) => {
                 if(item._id === product._id){
@@ -84,6 +88,8 @@ function ListOfProducts() {
                 reservedItems: cartItems,
                 totalCost: newTotalCost
             })
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            localStorage.setItem("totalCost", JSON.stringify(newTotalCost));
         }
     }
 
