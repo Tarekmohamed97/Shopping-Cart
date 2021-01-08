@@ -4,16 +4,24 @@ import "./listOfProducts.css"
 import Products from './products';
 import ProductsFilter from '../filterBar/index'
 import ReservedProducts from '../reservedProducts';
+import UserForm from '../reservedProducts/userForm';
+
 
 function ListOfProducts() {
 
+    const [showUserFormPopup, setShowUserFormPopup] = useState(false)
     const [state, setState] = useState({
         products: data.products,
         size: "",
         sort: "",
         reservedItems: JSON.parse(localStorage.getItem("cartItems"))? JSON.parse(localStorage.getItem("cartItems")) : [],
-        totalCost: JSON.parse(localStorage.getItem("totalCost"))
+        totalCost: JSON.parse(localStorage.getItem("totalCost")),
+        name: "",
+        email: "",
+        phone: ""
     })
+
+    
 
     const filterByPrice = (event) => {
         const sortValue = event.target.value;
@@ -93,6 +101,18 @@ function ListOfProducts() {
         }
     }
 
+    const handleChange = (event) => {
+        const {name, value} = event.target
+        setState({...state,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(state)
+    }
+
     return (
         <div className = "productsList__Container">
             <div className = "mainContent__container">
@@ -106,8 +126,16 @@ function ListOfProducts() {
                 <Products handleAddToCart = {handleAddToCart}  products = {state.products} />
             </div>
             <div className = "sideBarContent__container">
-                <ReservedProducts totalCost = {state.totalCost} handleRemoveFromCart = {handleRemoveFromCart} cartItems = {state.reservedItems} />
+                <ReservedProducts setShowUserFormPopup = {setShowUserFormPopup} totalCost = {state.totalCost} handleRemoveFromCart = {handleRemoveFromCart} cartItems = {state.reservedItems} />
             </div>
+            {
+                showUserFormPopup ? 
+                <UserForm
+                    setShowUserFormPopup = {setShowUserFormPopup}
+                    handleChange = {handleChange}
+                    handleSubmit = {handleSubmit}
+                />  : null
+            }
         </div>
     )
 }
