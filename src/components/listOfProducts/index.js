@@ -5,6 +5,8 @@ import Products from './products';
 import ProductsFilter from '../filterBar/index'
 import ReservedProducts from '../reservedProducts';
 import UserForm from '../reservedProducts/userForm';
+import {connect} from 'react-redux';
+import {addUserData} from '../../redux/actions'
 
 
 function ListOfProducts() {
@@ -110,7 +112,7 @@ function ListOfProducts() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(state)
+        addUserData(state)
     }
 
     return (
@@ -140,4 +142,16 @@ function ListOfProducts() {
     )
 }
 
-export default ListOfProducts
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        addUserData: () => dispatch(addUserData())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListOfProducts)
